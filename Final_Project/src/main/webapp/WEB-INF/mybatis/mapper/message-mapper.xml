@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="message">
+	<insert id="insertOne">
+		INSERT INTO	MESSAGE
+			(NO, CONTENT, WRITER, RECIPIENT, WRITEDATE)
+		VALUES
+			(MESSAGE_SEQ.NEXTVAL, #{content}, #{writer}, #{recipient}, SYSDATE)
+		<selectKey resultType="int" keyProperty="no" order="AFTER">
+			SELECT MESSAGE_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	<select id="selectSomeByWriter" resultType="message">
+		SELECT * FROM MESSAGE WHERE WRITER = #{id}
+	</select>
+	<select id="selectSomeByReader" resultType="message">
+		SELECT * FROM MESSAGE WHERE RECIPIENT = #{id}
+	</select>
+	<select id="selectOneByNo" resultType="message">
+		SELECT * FROM MESSAGE WHERE NO = #{no}
+	</select>
+	
+	<select id="countReadDateIsNull" resultType="int">
+		SELECT COUNT(*) FROM MESSAGE WHERE READER =#{id} AND READDATE IS NULL 
+	</select>
+	
+	<update id="updateReadDateByNo">
+		UPDATE MESSAGE SET READDATE = SYSDATE WHERE NO = #{no} AND READDATE IS NOT NULL
+	</update>
+	
+	<delete id="deleteSomeByNo">
+		DELETE FROM MESSAGE 
+			WHERE NO IN 
+		<foreach collection="array" open="(" close=")" separator="," item="no">
+			#{no}
+		</foreach>
+		AND READDATE IS NULL
+	</delete>
+</mapper>      
+
+ 
+
+
+
