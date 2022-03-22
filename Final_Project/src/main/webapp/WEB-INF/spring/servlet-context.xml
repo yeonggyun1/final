@@ -4,8 +4,10 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
@@ -40,18 +42,39 @@
 			<bean class="net.edupoll.kr.interceptor.AuthInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
-	
-	<bean class="java.util.HashMap" id="users"/>
-	<bean id="alertHandler" class="net.edupoll.kr.websocket.AlertHandler"/>
+
+
+	<bean class="java.util.HashMap" id="users" />
+	<bean id="alertHandler"
+		class="net.edupoll.kr.websocket.AlertHandler" />
 	<websocket:handlers>
-		<websocket:mapping handler="alertHandler" path="/ws/alert" />
+		<websocket:mapping handler="alertHandler"
+			path="/ws/alert" />
 		<websocket:handshake-interceptors>
-			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+			<bean
+				class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
+
+	<bean id="simpleTask" class="net.edupoll.kr.task.SimpleTask" />
+	<task:scheduler id="finalScheduler" pool-size="10" />
+	<task:scheduled-tasks scheduler="finalScheduler">
+		<task:scheduled ref="simpleTask" method="printLog" fixed-rate="5000"/>
+		<task:scheduled ref="simpleTask" method="printAnyThing" cron="0 * 14 * * *"/>
+	</task:scheduled-tasks>
+	
+	<task:annotation-driven/>
 	
 </beans>
+
+
+
+
+
+
+
+
+
 
 
 
