@@ -14,7 +14,7 @@ public class TimeCountDao {
 	SqlSession session;
 	
 	public List<TimeCountVo> countPerHours() {
-		return session.selectList("timeCount.selectOneByNo");
+		return session.selectList("statistics.countPerHours");
 	}
 	
 }
