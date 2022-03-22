@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="net.edupoll.kr.entity.AccountVo" alias="account"/>
 		<typeAlias type="net.edupoll.kr.entity.MessageVo" alias="message"/>
+		<typeAlias type="net.edupoll.kr.entity.TimeCountVo" alias="timeCount"/>
 	</typeAliases>
 </configuration> 
 

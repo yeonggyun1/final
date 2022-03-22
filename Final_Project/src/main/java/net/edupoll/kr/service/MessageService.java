@@ -12,7 +12,7 @@ import net.edupoll.kr.repository.MessageDao;
 public class MessageService {
 	@Autowired
 	MessageDao messageDao;
-
+	
 	public boolean sendNewMessage(String sender, MessageVo message) {
 		message.setWriter(sender);
 		int r = 0;

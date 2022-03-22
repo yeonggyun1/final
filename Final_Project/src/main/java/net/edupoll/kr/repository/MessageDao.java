@@ -32,7 +32,6 @@ public class MessageDao {
 	}
               	
 	public int countReadDateIsNull(String id) {
-		
 		return session.selectOne("message.countReadDateIsNull", id);
 	}
 	
