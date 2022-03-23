@@ -11,6 +11,8 @@ public class MessageVo {
 	Date readDate;
 	
 	String[] recipients;
+	
+	
 
 	public String[] getRecipients() {
 		return recipients;

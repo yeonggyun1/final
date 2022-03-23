@@ -3,11 +3,12 @@
 <div class="container pt-3">
 	<div style="margin-left: 20px;">
 		<small>※ 쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.</small>
-		<form method="post">
+		<form action="/insert" method="post">
 			<div style="margin-top: 10px;">
 				<input type="text" name="writer" placeholder="작성자.."
-					style="width: 40%" /> <input type="password" name="pass"
-					class="form-control" placeholder="비밀번호.." style="width: 40%" />
+					style="width: 40%" /> 
+				<input type="password" name="pass" class="form-control" 
+					placeholder="비밀번호.." style="width: 40%" />
 			</div>
 			<div style="margin-top: 10px;">
 				<input type="text" name="title" class="form-control"

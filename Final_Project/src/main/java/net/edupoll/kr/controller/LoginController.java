@@ -29,7 +29,6 @@ public class LoginController {
 			AccountVo vo = accountService.findAccountById(loginId);
 			// vo == null ?
 			session.setAttribute("loginUser", vo);
-			
 			return "redirect:/";
 		} else {
 			model.addAttribute("err", "error");

@@ -2,9 +2,12 @@ package net.edupoll.kr.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,52 +22,61 @@ import net.edupoll.kr.websocket.AlertService;
 public class MessageController {
 	@Autowired
 	MessageService messageService;
-
 	@Autowired
 	AlertService alertService;
-
-	@RequestMapping({ "/message", "/message/receivced" })
-	public String messageDefaultHandle(Model model, @SessionAttribute("loginUser") AccountVo loginUser) {
-
+	
+	@RequestMapping({"/message", "/message/receivced"})
+	public String messageDefaultHandle(Model model,
+				@SessionAttribute("loginUser") AccountVo loginUser) {
+		
 		List<MessageVo> li = messageService.getReceivedMessages(loginUser.getUserId());
-		model.addAttribute("received", li);
-		model.addAttribute("menu", 0);
-
+		model.addAttribute("received",li);
+		model.addAttribute("menu", 1);
 		return "message/received";
 	}
-
+	
+	
 	@RequestMapping("/message/sent")
-	public String messageSentHandle(Model model, @SessionAttribute("loginUser") AccountVo loginUser) {
-
+	public String messageSentHandle(Model model, HttpSession session) {
+		AccountVo loginUser = (AccountVo)session.getAttribute("loginUser");
+		
 		List<MessageVo> li = messageService.getSentMessages(loginUser.getUserId());
-		model.addAttribute("sent", li);
-		model.addAttribute("menu", 1);
-
+		model.addAttribute("sent",li);
+		model.addAttribute("menu", 2);
+		
 		return "message/sent";
 	}
-
+	
 	@RequestMapping("/message/write")
 	public String messageWriteHandle(Model model) {
-		model.addAttribute("menu", 2);
+		model.addAttribute("menu", 3);
 		return "message/write";
 	}
-
+	
 	@RequestMapping("/message/sending")
-	public String messageWriteHandle(@ModelAttribute MessageVo vo, @RequestParam String[] recipients,
-			@SessionAttribute("loginUser") AccountVo loginUser, Model model) {
-
+	public String messageWriteHandle(@ModelAttribute MessageVo vo, 
+				@RequestParam String[] recipients,
+				@SessionAttribute("loginUser") AccountVo loginUser, Model model) {
+	
 		boolean r = messageService.sendNewMessage(loginUser.getUserId(), vo);
-		if (r) {
+		
+		if(r) {
 			alertService.alertNewMessage(vo.getRecipient());
 		}
 		model.addAttribute("rst", r);
-
+		
 		return "message/write";
 	}
-
-	// @ExceptionHandler(Exception.class)
-	public String exepctionHandel(Exception e, Model model) {
-
+	
+	
+	@ExceptionHandler(Exception.class)
+	public String exepctionHandel(Exception e , Model model) {
 		return "message/error";
 	}
 }
+
+
+
+
+
+

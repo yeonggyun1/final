@@ -16,4 +16,6 @@ public class TimeCountVo {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	
+	
 }

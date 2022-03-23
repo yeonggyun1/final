@@ -8,25 +8,26 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
+
 @Component
 public class AlertService {
-	
+
 	@Autowired
 	Map users;
-
+	
 	public void alertNewMessage(String... targets) {
-		for (String target : targets) {
+		for(String target: targets) {
 			WebSocketSession session = (WebSocketSession)users.get(target);
-			if (session == null)
+			if(session ==null)
 				continue;
-
-			TextMessage txt = new TextMessage("{ \"type\" : \"새 메세지가 도착하였습니다.\"} ");
+			
+			TextMessage txt = new TextMessage("{ \"ment\" : \"새 메세지가 도착하였습니다.\"}");
 			try {
 				session.sendMessage(txt);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
+		
 	}
 }

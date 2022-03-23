@@ -33,14 +33,6 @@
 				<td>관리자(admin)</td>
 				<td class="text-error">읽음</td>
 			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td class="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">
-				$()
-				</td>
-				<td>관리자(admin)</td>
-				<td class="text-error">읽음</td>
-			</tr>
 		</tbody>
 	</table>
 </div>

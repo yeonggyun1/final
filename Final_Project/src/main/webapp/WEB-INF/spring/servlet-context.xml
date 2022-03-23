@@ -4,12 +4,14 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
 	<context:component-scan
@@ -44,7 +46,11 @@
 	</mvc:interceptors>
 
 
-	<bean class="java.util.HashMap" id="users" />
+
+	<util:map key-type="String" value-type="org.springframework.web.socket.WebSocketSession" 
+								id="users_" map-class="java.util.HashMap"/>
+	
+	<bean id="users" class="java.util.HashMap"/>
 	<bean id="alertHandler"
 		class="net.edupoll.kr.websocket.AlertHandler" />
 	<websocket:handlers>
@@ -56,16 +62,28 @@
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 
-	<bean id="simpleTask" class="net.edupoll.kr.task.SimpleTask" />
-	<task:scheduler id="finalScheduler" pool-size="10" />
+
+	<bean id="simpleTask" class="net.edupoll.kr.task.SimpleTask"/>
+	<task:scheduler id="finalScheduler" pool-size="10"/>
+	
+		
 	<task:scheduled-tasks scheduler="finalScheduler">
-		<task:scheduled ref="simpleTask" method="printLog" fixed-rate="5000"/>
+<!-- 		<task:scheduled ref="simpleTask" method="printLog" fixed-rate="5000"/> -->
 		<task:scheduled ref="simpleTask" method="printAnyThing" cron="0 * 14 * * *"/>
 	</task:scheduled-tasks>
 	
 	<task:annotation-driven/>
-	
+
+
 </beans>
+
+
+
+
+
+
+
+
 
 
 

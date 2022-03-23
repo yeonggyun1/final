@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <jsp:include page="/WEB-INF/views/include/top.jsp" />
 <jsp:include page="/WEB-INF/views/message/include/top.jsp" />
 
@@ -18,38 +19,29 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${received }" var="vo"></c:forEach>
-			<tr>
-				<td><input type="checkbox" name="no" value="${vo.no }" /></td>
-				<td
-					class="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">
-					스프링 프레임워크(영어: Spring Framework)는 자바 플랫폼을 위한 오픈 소스 애......</td>
+			<c:forEach items="${received }" var="vo">
+			<tr> 
+				<td><input type="checkbox" name="no" value="${vo.no }"/></td>
+				<td class="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;" style="width: 70%;">
+					${fn:substring(vo.content, 0, 30)  } ...
+				</td>
 				<td>${vo.writer }</td>
-				<td class="text-error"><c:choose>
+				<td class="text-error">
+					<c:choose>
 						<c:when test="${vo.readDate eq null }">
 							<span class="text-danger">읽지않음</span>
 						</c:when>
 						<c:otherwise>
-							<span class="text-info"> <fmt:formatDate
-									value="${vo.readDate }" pattern="yyyy.mm.dd" />
+							<span class="text-info">
+								<fmt:formatDate value="${vo.readDate }" pattern="yyyy.MM.dd"/>
 							</span>
 						</c:otherwise>
-					</c:choose></td>
+					</c:choose>
+				</td>
 			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td
-					class="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">
-					제어 반전(IoC: Inversion of Control) 컨테이너는 스프링의 가장 중요하고 핵심적.....</td>
-				<td>관리자(admin)</td>
-				<td class="text-error">읽지않음</td>
-			</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>
-
-
-
-
 <jsp:include page="/WEB-INF/views/message/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/bottom.jsp" />

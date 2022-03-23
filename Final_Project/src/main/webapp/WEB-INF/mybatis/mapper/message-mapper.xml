@@ -10,6 +10,7 @@
 			SELECT MESSAGE_SEQ.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
+	
 	<select id="selectSomeByWriter" resultType="message">
 		SELECT * FROM MESSAGE WHERE WRITER = #{id}
 	</select>

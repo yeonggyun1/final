@@ -15,15 +15,11 @@ public class FreeBoardService {
 
 	public boolean addNewOne(FreeBoardVo vo) {
 		int r = freeBoardDao.inserOne(vo);
-		
 		return r == 1;
 	}
 	
 	public List<FreeBoardVo> getAll() {
 		List<FreeBoardVo> list = freeBoardDao.selectAll();
-		
-		
-		
 		return list;
 	}
 

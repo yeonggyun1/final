@@ -8,9 +8,9 @@
 	</div>
 	<div class="pt-3">
 		<ul class="nav nav-tabs">
-			<li class="nav-item ${menu eq 0 ? 'active' : '' }"><a class="nav-link " href="/message">받은쪽지함</a>
+			<li class="nav-item"><a class="nav-link ${menu eq 1 ? 'active' : '' }" href="/message">받은쪽지함</a>
 			</li>
-			<li class="nav-item ${menu eq 1 ? 'active' : '' }"><a class="nav-link" href="/message/sent">보낸쪽지함</a></li>
-			<li class="nav-item ${menu eq 2 ? 'active' : '' }"><a class="nav-link active" href="/message/write">쪽지보내기</a></li>
+			<li class="nav-item"><a class="nav-link ${menu eq 2 ? 'active' : '' }" href="/message/sent">보낸쪽지함</a></li>
+			<li class="nav-item"><a class="nav-link ${menu eq 3 ? 'active' : '' }" href="/message/write">쪽지보내기</a></li>
 		</ul>
 	</div>

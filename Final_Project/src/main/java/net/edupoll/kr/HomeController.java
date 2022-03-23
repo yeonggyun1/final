@@ -27,13 +27,25 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
 		return "home";
 	}
 	
 	@Scheduled(fixedDelay = 10000)
-	public void testScheduled() {
-		System.out.println("..............");
+	public void testShechuled() {
+		//System.out.println("...............");
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,11 +19,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<div class="flex-container">
-		<div class="container-fluid p-3 bg-dark text-white">
-			<h1 onclick="location.href='/'">프로젝트</h1>
-			<p>Spring MVC 기반의 웹 어플리케이션</p>
-		</div>
+	<div class="container-fluid p-3 bg-dark text-white">
+		<h1 onclick="location.href='/'">프로젝트</h1>
+		<p>Spring MVC 기반의 웹 어플리케이션</p>
 	</div>
 	<c:choose>
 		<c:when test="${empty sessionScope.loginUser }">
@@ -33,7 +31,7 @@
 						class="nav-link" href="/">홈</a></li>
 					<li class="nav-item ${nav eq 'sign' ? 'active' : '' }"><a
 						class="nav-link" href="/login">로그인</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="/freeboard/list">자유게시판</a></li>
 				</ul>
 			</nav>
 		</c:when>
@@ -43,9 +41,8 @@
 					<li class="nav-item ${empty nav ? 'active' : '' }"><a
 						class="nav-link" href="/">홈</a></li>
 					<li class="nav-item"><a class="nav-link" href="/settings">내정보</a></li>
-					<li class="nav-item"><a class="nav-link" href="/message">메세지<span
-							class="badge">4</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="/message">메세지 <span class="badge badge-light">(5)</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="/freeboard/list">자유게시판</a></li>
 				</ul>
 			</nav>
 		</c:otherwise>

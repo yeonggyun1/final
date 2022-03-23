@@ -2,10 +2,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/include/top.jsp" />
-<div class="container pt-3">
+<div class="container">
 	<div style="border-bottom: 1px solid; margin-bottom: 30px;">
+		<h2>
+			자유게시판 <small>| 글보기</small>
+		</h2>
 		<p style="margin-left: 20px;">
-			<a href="/freeboard">글목록</a> | <a href="/freeboard/insert">글작성</a>
+			<a href="/freeboard/list">글목록</a> | <a href="/freeboard/insert">글작성</a>
 		</p>
 	</div>
 	<div style="margin-left: 20px; width: 80%">

@@ -9,31 +9,50 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import net.edupoll.kr.entity.AccountVo;
 
+
+
 public class AlertHandler extends TextWebSocketHandler {
-	
 	@Autowired
 	Map users;
-
+	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		/*
-		 * String id = session.getId(); System.out.println("id = " + id); Map<String,
-		 * Object> map = session.getAttributes(); System.out.println("size = " +
-		 * map.size()); for (String key : map.keySet()) { Object obj = map.get(key);
-		 * System.out.println(key + " = " + obj); }
-		 */
-		if (session.getAttributes().containsKey("loginUser")) {
+		String id = session.getId();
+		System.out.println("id = " + id);
+		Map<String, Object> map =session.getAttributes();
+		System.out.println("size = " + map.size());
+		for(String key : map.keySet()) {
+			Object obj = map.get(key);
+			System.out.println(key +" = " + obj);
+		}
+		*/
+		if(session.getAttributes().containsKey("loginUser")) {
 			AccountVo vo = (AccountVo) session.getAttributes().get("loginUser");
 			users.put(vo.getUserId(), session);
 		}
 	}
-
+	
+	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		if (session.getAttributes().containsKey("loginUser")) {
+		if(session.getAttributes().containsKey("loginUser")) {
 			AccountVo vo = (AccountVo) session.getAttributes().get("loginUser");
 			users.remove(vo.getUserId());
 		}
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
