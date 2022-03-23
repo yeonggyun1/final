@@ -50,7 +50,6 @@ public class SignUpController {
 		if (result.hasErrors()) {
 			return "signup/signup";
 		}
-		
 		return "signup/signup2";
 	}
 
@@ -60,8 +59,6 @@ public class SignUpController {
 			return "signup/signup2";
 		}
 		boolean r = signUpService.registerAccount(vo);
-	
-		
 		return "signup/signupOk";
 	}
 	

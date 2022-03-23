@@ -31,7 +31,7 @@
 						class="nav-link" href="/">홈</a></li>
 					<li class="nav-item ${nav eq 'sign' ? 'active' : '' }"><a
 						class="nav-link" href="/login">로그인</a></li>
-					<li class="nav-item"><a class="nav-link" href="/freeboard/list">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="/freeboard">자유게시판</a></li>
 				</ul>
 			</nav>
 		</c:when>
@@ -42,7 +42,7 @@
 						class="nav-link" href="/">홈</a></li>
 					<li class="nav-item"><a class="nav-link" href="/settings">내정보</a></li>
 					<li class="nav-item"><a class="nav-link" href="/message">메세지 <span class="badge badge-light">(5)</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="/freeboard/list">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="/freeboard">자유게시판</a></li>
 				</ul>
 			</nav>
 		</c:otherwise>

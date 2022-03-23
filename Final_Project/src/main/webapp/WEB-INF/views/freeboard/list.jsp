@@ -9,14 +9,14 @@
 			자유게시판 <small>| 글전체목록</small>
 		</h2>
 		<p style="margin-left: 20px;">
-			<%-- <c:choose>
+			<c:choose>
 				<c:when test="${auth eq null or auth eq false }">
-					<a href="/account/login">로그인</a>
+					<a href="/login">로그인</a>
 				</c:when>
 				<c:otherwise>
-					<b>${loginVo.name }</b> 님, 이용중 
+					<b>${userName.name }</b> 님, 이용중 
 				</c:otherwise>
-			</c:choose> --%>
+			</c:choose>
 			<a href="/freeboard/insert">글쓰기</a>
 		</p>
 	</div>

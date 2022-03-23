@@ -13,6 +13,7 @@ import net.edupoll.kr.entity.FreeBoardVo;
 import net.edupoll.kr.service.FreeBoardService;
 
 @Controller
+@RequestMapping("/freeboard")
 public class FreeBoardController {
 	@Autowired
 	FreeBoardService freeBoardService;

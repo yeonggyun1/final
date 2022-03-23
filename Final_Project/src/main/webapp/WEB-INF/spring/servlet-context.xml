@@ -46,11 +46,11 @@
 	</mvc:interceptors>
 
 
+	<util:map key-type="String"
+		value-type="org.springframework.web.socket.WebSocketSession"
+		id="users_" map-class="java.util.HashMap" />
 
-	<util:map key-type="String" value-type="org.springframework.web.socket.WebSocketSession" 
-								id="users_" map-class="java.util.HashMap"/>
-	
-	<bean id="users" class="java.util.HashMap"/>
+	<bean id="users" class="java.util.HashMap" />
 	<bean id="alertHandler"
 		class="net.edupoll.kr.websocket.AlertHandler" />
 	<websocket:handlers>
@@ -63,16 +63,17 @@
 	</websocket:handlers>
 
 
-	<bean id="simpleTask" class="net.edupoll.kr.task.SimpleTask"/>
-	<task:scheduler id="finalScheduler" pool-size="10"/>
-	
-		
+	<bean id="simpleTask" class="net.edupoll.kr.task.SimpleTask" />
+	<task:scheduler id="finalScheduler" pool-size="10" />
+
+
 	<task:scheduled-tasks scheduler="finalScheduler">
-<!-- 		<task:scheduled ref="simpleTask" method="printLog" fixed-rate="5000"/> -->
-		<task:scheduled ref="simpleTask" method="printAnyThing" cron="0 * 14 * * *"/>
+		<!-- <task:scheduled ref="simpleTask" method="printLog" fixed-rate="5000"/> -->
+		<task:scheduled ref="simpleTask" method="printAnyThing"
+			cron="0 * 14 * * *" />
 	</task:scheduled-tasks>
-	
-	<task:annotation-driven/>
+
+	<task:annotation-driven />
 
 
 </beans>
